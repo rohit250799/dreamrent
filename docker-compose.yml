@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=dreamrent_db
+      - POSTGRES_USER=dreamrent_testUser  
+      - POSTGRES_PASSWORD=test@123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://my_user:my_password@db:5432/my_project  
+
+volumes:
+  postgres-data:
