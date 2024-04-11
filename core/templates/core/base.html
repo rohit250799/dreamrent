@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DREAMRENT</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+         <!--navbar-->
+         <nav class="bg-light m-2">
+            <div class="flex items-center justify-between">
+              <a href="{% url "frontpage" %}" class="font-bold">DREAMRENT</a>
+              <div class="flex items-center space-x-4">
+                {% if request.user.is_authenticated %}
+                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded">Log Out</a>
+                {% else %}
+                <a href="#" class="bg-green-500 text-white font-bold px-4 py-2 rounded">Sign Up</a>
+                <a href="#" class="text-light px-4 py-2 rounded">Log In</a>
+                {% endif %}
+              </div>
+            </div>
+          </nav>
+        <!--end navbar-->
+
+        <!--main content-->
+        <section class="section">
+            {% block content %}
+            {% endblock %}
+        </section>
+        <!--end main content-->
+
+        
+        <script src="" async defer></script>
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
