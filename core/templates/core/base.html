@@ -16,10 +16,10 @@
               <a href="{% url "frontpage" %}" class="font-bold">DREAMRENT</a>
               <div class="flex items-center space-x-4">
                 {% if request.user.is_authenticated %}
-                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded">Log Out</a>
+                  <a href="{% url "logout" %}" class="bg-red-500 text-white px-4 py-2 rounded">Log Out</a>
                 {% else %}
-                <a href="#" class="bg-green-500 text-white font-bold px-4 py-2 rounded">Sign Up</a>
-                <a href="#" class="text-light px-4 py-2 rounded">Log In</a>
+                  <a href="#" class="bg-green-500 text-white font-bold px-4 py-2 rounded">Sign Up</a>
+                  <a href="#" class="text-light px-4 py-2 rounded">Log In</a>
                 {% endif %}
               </div>
             </div>
