@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <h1 class="title">Dashboard</h1>
+
+    {% if userprofile.is_employer %}
+        <h2 class="subtitle">Jobs</h2>
+
+        <a href="#" class="button is-success">Add property</a>
+        <br><hr>
+        <p>Created jobs: </p> <br>
+        {% for job in request.user.jobs.all %}
+            <div class="job card">
+                <div class="card-content">
+                    <a href="#">{{ job.title }} ({{ job.get_status_display }})</a>
+                    <p class="is-size-4">{{ job.short_description }}</p>
+                    <p class="">{{ job.long_description }}</p>
+                </div>
+                
+            </div>
+        {% empty %}
+            <p class="">You don't have any created jobs yet...</p>
+        {% endfor %}
+    {% else %}
+        <h2 class="subtitle">Applied Jobs</h2>
+        {% for application in request.user.applications.all %}
+            <div class="application">
+                <a href="#">{{ application.job.title }}</a>
+            </div>
+            {% empty %}
+                <p class="">You have not applied for any jobs yet...</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
